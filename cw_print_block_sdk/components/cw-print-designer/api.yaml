@@ -7,7 +7,7 @@
     - name: isShowPrint
       title: 是否展示打印区域
       type: boolean
-      default: false
+      default: true
       description: 是否显示打印区域
     - name: paperSize
       type: string
