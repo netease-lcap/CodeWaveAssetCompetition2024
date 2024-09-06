@@ -153,6 +153,8 @@ public class DefaultReaderListener<T> extends AnalysisEventListener<Map<Integer,
             this.headRowIndex = context.readRowHolder().getRowIndex();
             this.headMap = headMap;
         }
+        // 版本缺陷 最后一列如果数据为空导致head.size != data.size https://github.com/alibaba/easyexcel/issues/3108
+        context.readSheetHolder().setMaxNotEmptyDataHeadSize(this.headMap.size());
     }
 
     @Override
