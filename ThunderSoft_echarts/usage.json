@@ -1,0 +1,362 @@
+{
+    "name": "huaqi_custom_echarts",
+    "title": "可视化统计图",
+    "description": "huaqi可视化统计图",
+    "specVersion": "1.0.0",
+    "type": "module",
+    "subType": "extension",
+    "version": "1.0.1",
+    "frontends": [
+        {
+            "concept": "FrontendLibrary",
+            "name": "pc",
+            "type": "pc",
+            "viewComponents": [
+                {
+                    "concept": "ViewComponent",
+                    "name": "duration-charts",
+                    "title": "时长统计",
+                    "category": "huaqi_custom_echarts(可视化统计图)",
+                    "blocks": [
+                        {
+                            "title": "基本用法",
+                            "description": "",
+                            "code": "<template>\n<duration-charts></duration-charts>\n</template>"
+                        }
+                    ],
+                    "attrs": [
+                        {
+                            "name": "valueData",
+                            "type": "array",
+                            "default": [],
+                            "description": "学习时长数据, 格式为[{name:xxx,value:xxx},...],需要按照倒叙排列,value为时长(单位:秒)"
+                        },
+                        {
+                            "name": "colorData",
+                            "type": "array",
+                            "default": [
+                                "#7A4AD9",
+                                "#9F79EA",
+                                "#1F51C4",
+                                "#4179FA",
+                                "#2DC3E0",
+                                "#2DB976",
+                                "#72E168",
+                                "#F2DC1B",
+                                "#ED6F21",
+                                "#E63322",
+                                "#33FFDD",
+                                "#33FFFF"
+                            ],
+                            "description": "颜色列表，格式为['#xxxxxx','#xxxxxx',...]"
+                        },
+                        {
+                            "name": "height",
+                            "type": "number",
+                            "default": 20,
+                            "description": "进度条高度(单位:px)"
+                        },
+                        {
+                            "name": "progressText",
+                            "type": "string",
+                            "default": "姓名",
+                            "description": "name文字"
+                        }
+                    ],
+                    "methods": [
+                        {
+                            "name": "init",
+                            "description": "刷新加载数据"
+                        }
+                    ]
+                },
+                {
+                    "concept": "ViewComponent",
+                    "name": "frequency-charts",
+                    "title": "次数统计",
+                    "category": "huaqi_custom_echarts(可视化统计图)",
+                    "blocks": [
+                        {
+                            "title": "基本用法",
+                            "description": "",
+                            "code": "<template>\n<frequency-charts></frequency-charts>\n</template>"
+                        }
+                    ],
+                    "attrs": [
+                        {
+                            "name": "chartWidth",
+                            "type": "string",
+                            "default": "100%",
+                            "description": "图表宽度"
+                        },
+                        {
+                            "name": "chartHeight",
+                            "type": "string",
+                            "default": "300px",
+                            "description": "图表高度"
+                        },
+                        {
+                            "name": "xAxisData",
+                            "type": "array",
+                            "default": [
+                                "已通过",
+                                "待完成",
+                                "未通过"
+                            ],
+                            "description": "x轴数据"
+                        },
+                        {
+                            "name": "valueData",
+                            "type": "array",
+                            "default": [],
+                            "description": "图表数据"
+                        },
+                        {
+                            "name": "dataColor",
+                            "type": "array",
+                            "default": [
+                                "#2DB976",
+                                "#9F79EA",
+                                "#2DC3E0"
+                            ],
+                            "description": "图表颜色集合"
+                        },
+                        {
+                            "name": "seriesName",
+                            "type": "string",
+                            "description": "图表名称"
+                        }
+                    ],
+                    "methods": [
+                        {
+                            "name": "init",
+                            "description": "刷新加载数据"
+                        }
+                    ]
+                },
+                {
+                    "concept": "ViewComponent",
+                    "name": "passing-charts",
+                    "title": "通过率统计",
+                    "category": "huaqi_custom_echarts(可视化统计图)",
+                    "blocks": [
+                        {
+                            "title": "基本用法",
+                            "description": "",
+                            "code": "<template>\n<passing-charts></passing-charts>\n</template>"
+                        }
+                    ],
+                    "attrs": [
+                        {
+                            "name": "chartWidth",
+                            "type": "string",
+                            "default": "100%",
+                            "description": "图表宽度"
+                        },
+                        {
+                            "name": "chartHeight",
+                            "type": "string",
+                            "default": "300px",
+                            "description": "图表高度"
+                        },
+                        {
+                            "name": "valueData",
+                            "type": "array",
+                            "default": [],
+                            "description": "数据源，格式为[{name:xxx,value:xxx}]"
+                        },
+                        {
+                            "name": "dataColor",
+                            "type": "array",
+                            "default": [
+                                "#2DB976",
+                                "#9F79EA",
+                                "#2DC3E0"
+                            ],
+                            "description": "图表颜色集合"
+                        }
+                    ],
+                    "methods": [
+                        {
+                            "name": "init",
+                            "description": "刷新加载数据"
+                        }
+                    ]
+                }
+            ],
+            "logics": []
+        },
+        {
+            "concept": "FrontendLibrary",
+            "name": "h5",
+            "type": "h5",
+            "viewComponents": [
+                {
+                    "concept": "ViewComponent",
+                    "name": "completion-rate-charts",
+                    "title": "通过率统计",
+                    "category": "huaqi_custom_echarts(可视化统计图)",
+                    "blocks": [
+                        {
+                            "title": "基本用法",
+                            "description": "",
+                            "code": "<template>\n<completion-rate-charts></completion-rate-charts>\n</template>"
+                        }
+                    ],
+                    "attrs": [
+                        {
+                            "name": "chartWidth",
+                            "type": "string",
+                            "default": "100%",
+                            "description": "图表宽度"
+                        },
+                        {
+                            "name": "chartHeight",
+                            "type": "string",
+                            "default": "300px",
+                            "description": "图表高度"
+                        },
+                        {
+                            "name": "xAxisData",
+                            "type": "array",
+                            "default": [
+                                "已通过",
+                                "未通过"
+                            ],
+                            "description": "x轴数据"
+                        },
+                        {
+                            "name": "averageValue",
+                            "type": "array",
+                            "default": [],
+                            "description": "平均数据,格式为[xxx,...]"
+                        },
+                        {
+                            "name": "myValue",
+                            "type": "array",
+                            "default": [],
+                            "description": "我的数据,格式为[xxx,...]"
+                        },
+                        {
+                            "name": "dataColor",
+                            "type": "array",
+                            "default": [
+                                "#2DB976",
+                                "#2DC3E0"
+                            ],
+                            "description": "图表颜色集合"
+                        }
+                    ],
+                    "methods": [
+                        {
+                            "name": "init",
+                            "description": "刷新加载数据"
+                        }
+                    ]
+                },
+                {
+                    "concept": "ViewComponent",
+                    "name": "exam-charts",
+                    "title": "考试统计",
+                    "category": "huaqi_custom_echarts(可视化统计图)",
+                    "blocks": [
+                        {
+                            "title": "基本用法",
+                            "description": "",
+                            "code": "<template>\n<exam-charts></exam-charts>\n</template>"
+                        }
+                    ],
+                    "attrs": [
+                        {
+                            "name": "chartWidth",
+                            "type": "string",
+                            "default": "100%",
+                            "description": "图表宽度"
+                        },
+                        {
+                            "name": "chartHeight",
+                            "type": "string",
+                            "default": "300px",
+                            "description": "图表高度"
+                        },
+                        {
+                            "name": "valueData",
+                            "type": "array",
+                            "default": [],
+                            "description": "数据源，格式为[{name:xxx,value:xxx}]"
+                        },
+                        {
+                            "name": "dataColor",
+                            "type": "array",
+                            "default": [
+                                "#2DB976",
+                                "#2DC3E0"
+                            ],
+                            "description": "图表颜色集合"
+                        },
+                        {
+                            "name": "seriesName",
+                            "type": "string",
+                            "description": "图表名称"
+                        }
+                    ],
+                    "methods": [
+                        {
+                            "name": "init",
+                            "description": "刷新加载数据"
+                        }
+                    ]
+                }
+            ],
+            "logics": []
+        }
+    ],
+    "annotations": [],
+    "summary": {
+        "name": "huaqi_custom_echarts",
+        "title": "可视化统计图",
+        "version": "1.0.1",
+        "description": "huaqi可视化统计图",
+        "frontends": [
+            {
+                "type": "pc",
+                "viewComponents": [
+                    {
+                        "name": "duration-charts",
+                        "title": "时长统计"
+                    },
+                    {
+                        "name": "frequency-charts",
+                        "title": "次数统计"
+                    },
+                    {
+                        "name": "passing-charts",
+                        "title": "通过率统计"
+                    }
+                ],
+                "logics": []
+            },
+            {
+                "type": "h5",
+                "viewComponents": [
+                    {
+                        "name": "completion-rate-charts",
+                        "title": "通过率统计"
+                    },
+                    {
+                        "name": "exam-charts",
+                        "title": "考试统计"
+                    }
+                ],
+                "logics": []
+            }
+        ],
+        "annotations": []
+    },
+    "compilerInfoMap": {
+        "js": {
+            "prefix": "extension"
+        }
+    },
+    "ideVersion": "3.2"
+}

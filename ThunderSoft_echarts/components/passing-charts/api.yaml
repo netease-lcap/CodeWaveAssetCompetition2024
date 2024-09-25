@@ -1,0 +1,25 @@
+- name: passing-charts
+  title: 通过率统计
+  type: pc
+  belong: component
+  labels: [Runtime]
+  attrs:
+    - name: chartWidth
+      type: string
+      default: 100%
+      description: 图表宽度
+    - name: chartHeight
+      type: string
+      default: 300px
+      description: 图表高度
+    - name: valueData
+      type: array
+      default: []
+      description: 数据源，格式为[{name:xxx,value:xxx}]
+    - name: dataColor
+      type: array
+      default: ["#2DB976","#9F79EA","#2DC3E0"]
+      description: 图表颜色集合
+  methods:
+    - name: init
+      description: 刷新加载数据

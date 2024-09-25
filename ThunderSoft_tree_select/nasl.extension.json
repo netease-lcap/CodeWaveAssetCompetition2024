@@ -1,0 +1,218 @@
+{
+  "name": "codewave_component",
+  "title": "低代码组件",
+  "description": "低代码组件",
+  "specVersion": "1.0.0",
+  "type": "module",
+  "subType": "extension",
+  "version": "2.0.2",
+  "frontends": [
+    {
+      "concept": "FrontendLibrary",
+      "name": "pc",
+      "type": "pc",
+      "frameworkKind": "vue2",
+      "viewComponents": [
+        {
+          "concept": "ViewComponentDeclaration",
+          "group": "",
+          "name": "TreeSelectSn",
+          "kebabName": "tree-select-sn",
+          "title": "带卡片的树形选择器",
+          "description": "带卡片的树形选择器",
+          "icon": "",
+          "tsTypeParams": "",
+          "props": [
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "tabs",
+              "title": "选项卡名称",
+              "tsType": "nasl.collection.List<any>",
+              "description": "选项卡名称"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "treeDataFromProps",
+              "title": "数据源值",
+              "tsType": "nasl.collection.List<any>",
+              "description": "树对应的值"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "childrenFromProps",
+              "title": "懒加载数据源值",
+              "tsType": "nasl.collection.List<any>",
+              "description": "懒加载绑定值"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "label",
+              "title": "树展示字段",
+              "tsType": "nasl.core.String",
+              "description": "树展示字段"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "leaf",
+              "title": "叶子对应字段",
+              "tsType": "nasl.core.String",
+              "description": "表示该节点是否是叶子节点，对应值为Boolean类型"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "avatar",
+              "title": "头像url对应属性字段",
+              "tsType": "nasl.core.String",
+              "description": "对应头像的url"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "avatarKey",
+              "title": "过滤需要显示头像的数据属性",
+              "tsType": "nasl.core.String",
+              "description": "用来过滤需要显示头像的数据"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "avatarValue",
+              "title": "过滤需要显示头像的数据属性值",
+              "tsType": "nasl.core.String",
+              "description": "用来过滤需要显示头像的数据"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "isFilter",
+              "title": "数据是否过滤",
+              "tsType": "nasl.core.Boolean",
+              "description": "添加按钮是否对数据进行过滤"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "filterKey",
+              "title": "数据过滤对应属性",
+              "tsType": "nasl.core.String",
+              "description": "数据过滤对应属性"
+            },
+            {
+              "concept": "PropDeclaration",
+              "group": "主要属性",
+              "sync": true,
+              "tabKind": "property",
+              "name": "filterValue",
+              "title": "数据过滤对应属性值",
+              "tsType": "nasl.core.String",
+              "description": "数据过滤对应属性值"
+            }
+          ],
+          "readableProps": [],
+          "events": [
+            {
+              "concept": "EventDeclaration",
+              "name": "handleloadchildren",
+              "title": "懒加载触发获取子节点",
+              "tsType": "(event: {\n  formData: EventParam;\n}) => void",
+              "description": "懒加载触发获取子节点"
+            },
+            {
+              "concept": "EventDeclaration",
+              "name": "handletabchange",
+              "title": "选项卡切换事件",
+              "tsType": "(event: {\n  formData: EventParam;\n}) => void",
+              "description": "选项卡切换事件"
+            },
+            {
+              "concept": "EventDeclaration",
+              "name": "handleconfirm",
+              "title": "数据提交",
+              "tsType": "(event: {\n  formData: EventParam;\n}) => void",
+              "description": "数据提交"
+            }
+          ],
+          "methods": [],
+          "slots": [],
+          "children": [],
+          "blocks": [
+            {
+              "concept": "ViewBlockWithImage",
+              "title": "基本用法",
+              "description": "",
+              "code": "<template><tree-select-sn></tree-select-sn></template>",
+              "screenshot": "",
+              "drawing": ""
+            }
+          ],
+          "themeVariables": [],
+          "type": "pc",
+          "ideusage": {
+            "idetype": "element"
+          }
+        }
+      ],
+      "logics": []
+    }
+  ],
+  "externalDependencyMap": {
+    "npm": [
+      {
+        "name": "vue",
+        "version": "^2.6.0"
+      }
+    ]
+  },
+  "summary": {
+    "name": "codewave_component",
+    "title": "低代码组件",
+    "version": "2.0.2",
+    "description": "低代码组件",
+    "frontends": [
+      {
+        "type": "pc",
+        "frameworkKind": "vue2",
+        "viewComponents": [
+          {
+            "name": "TreeSelectSn",
+            "title": "带卡片的树形选择器"
+          }
+        ],
+        "logics": []
+      }
+    ]
+  },
+  "compilerInfoMap": {
+    "js": {
+      "prefix": "extension"
+    },
+    "manifest": "{\"nasl\":[\"nasl.extension.json\",\"nasl.extension.d.ts\"],\"runtime\":[\"dist-theme/index.js\",\"dist-theme/index.css\"],\"theme\":[],\"package\":[\"source.zip\",\"zip.tgz\"],\"i18n\":[],\"ide\":[]}"
+  },
+  "ideVersion": "3.8"
+}

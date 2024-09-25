@@ -1,0 +1,39 @@
+- name: duration-charts
+  title: 时长统计
+  type: pc
+  belong: component
+  labels: [Runtime]
+  attrs:
+    - name: valueData
+      type: array
+      default: []
+      description: 学习时长数据, 格式为[{name:xxx,value:xxx},...],需要按照倒叙排列,value为时长(单位:秒)
+    - name: colorData
+      type: array
+      default:
+        [
+          "#7A4AD9",
+          "#9F79EA",
+          "#1F51C4",
+          "#4179FA",
+          "#2DC3E0",
+          "#2DB976",
+          "#72E168",
+          "#F2DC1B",
+          "#ED6F21",
+          "#E63322",
+          "#33FFDD",
+          "#33FFFF",
+        ]
+      description: 颜色列表，格式为['#xxxxxx','#xxxxxx',...]
+    - name: height
+      type: number
+      default: 20
+      description: 进度条高度(单位:px)
+    - name: progressText
+      type: string
+      default: 姓名
+      description: name文字
+  methods:
+    - name: init
+      description: 刷新加载数据

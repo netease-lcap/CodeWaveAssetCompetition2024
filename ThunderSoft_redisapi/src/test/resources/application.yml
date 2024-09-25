@@ -1,0 +1,8 @@
+extensions:
+  libraryDemo_redis:
+    custom:
+      redisHost:
+      redisPort:
+      redisPassword:
+      redisDatabase:
+
