@@ -1,0 +1,103 @@
+{
+    "name": "library_fdddf_copy",
+    "title": "复制文本依赖库",
+    "description": "",
+    "specVersion": "1.0.0",
+    "type": "module",
+    "subType": "extension",
+    "version": "1.0.1",
+    "frontends": [
+        {
+            "concept": "FrontendLibrary",
+            "name": "pc",
+            "type": "pc",
+            "viewComponents": [],
+            "logics": [
+                {
+                    "concept": "Logic",
+                    "name": "copyText",
+                    "description": "复制文本",
+                    "category": "library_fdddf_copy",
+                    "params": [
+                        {
+                            "name": "text",
+                            "concept": "Param",
+                            "description": "需要复制的文本",
+                            "required": true,
+                            "typeAnnotation": {
+                                "concept": "TypeAnnotation",
+                                "typeKind": "primitive",
+                                "typeName": "String",
+                                "typeNamespace": "nasl.core"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "concept": "FrontendLibrary",
+            "name": "h5",
+            "type": "h5",
+            "viewComponents": [],
+            "logics": [
+                {
+                    "concept": "Logic",
+                    "name": "copyText",
+                    "description": "复制文本",
+                    "category": "library_fdddf_copy",
+                    "params": [
+                        {
+                            "name": "text",
+                            "concept": "Param",
+                            "description": "需要复制的文本",
+                            "required": true,
+                            "typeAnnotation": {
+                                "concept": "TypeAnnotation",
+                                "typeKind": "primitive",
+                                "typeName": "String",
+                                "typeNamespace": "nasl.core"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "annotations": [],
+    "summary": {
+        "name": "library_fdddf_copy",
+        "title": "复制文本依赖库",
+        "version": "1.0.1",
+        "description": "",
+        "frontends": [
+            {
+                "type": "pc",
+                "viewComponents": [],
+                "logics": [
+                    {
+                        "name": "copyText",
+                        "description": "复制文本"
+                    }
+                ]
+            },
+            {
+                "type": "h5",
+                "viewComponents": [],
+                "logics": [
+                    {
+                        "name": "copyText",
+                        "description": "复制文本"
+                    }
+                ]
+            }
+        ],
+        "annotations": []
+    },
+    "compilerInfoMap": {
+        "js": {
+            "prefix": "extension"
+        }
+    },
+    "ideVersion": "3.2"
+}
