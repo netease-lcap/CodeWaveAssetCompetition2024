@@ -1,0 +1,3 @@
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wgx.lib.delayqueue.spring.DelayQueueUtilSpringEnvironmentConfiguration
