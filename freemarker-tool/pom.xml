@@ -7,7 +7,7 @@
     <groupId>com.netease.lowcode</groupId>
     <artifactId>freemarker-tool</artifactId>
     <!-- We currently do not support snapshots. Please use a testing version number like 0.x.x, e.g. 0.1.12 -->
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

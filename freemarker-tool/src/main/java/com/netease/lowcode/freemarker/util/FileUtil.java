@@ -1,7 +1,9 @@
 package com.netease.lowcode.freemarker.util;
 
+import com.netease.lowcode.freemarker.config.UploadConfig;
 import com.netease.lowcode.freemarker.dto.UploadResponseDTO;
 import okhttp3.*;
+import org.apache.poi.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -95,6 +97,11 @@ public class FileUtil {
             if (!urlStr.startsWith("http") && urlStr.startsWith("/upload")) {
                 HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
                 int port = request.getLocalPort();
+
+                String uploadPort = UploadConfig.getUploadPort();
+                if (isValidPort(uploadPort)) {
+                    port = Integer.parseInt(uploadPort);
+                }
                 return "http://127.0.0.1:" + port + urlStr;
             }
         } catch (Exception e) {
@@ -105,13 +112,18 @@ public class FileUtil {
 
     public static UploadResponseDTO uploadStream(InputStream inputStream, String fileName) throws IOException {
         int port;
-        try {
-            HttpServletRequest httpServletRequest = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-            port = httpServletRequest.getLocalPort();
-        } catch (Exception e) {
-            logger.error("获取本地port失败，默认获取8080", e);
-            //兜底方案
-            port = 8080;
+        String uploadPort = UploadConfig.getUploadPort();
+        if (isValidPort(uploadPort)) {
+            port = Integer.parseInt(uploadPort);
+        } else {
+            try {
+                HttpServletRequest httpServletRequest = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+                port = httpServletRequest.getLocalPort();
+            } catch (Exception e) {
+                logger.error("获取本地port失败，默认获取8080", e);
+                //兜底方案
+                port = 8080;
+            }
         }
         String uploadUrl = "http://127.0.0.1:" + port + "/gateway/lowcode/api/v1/app/upload";
 
@@ -145,5 +157,18 @@ public class FileUtil {
         }
         logger.error(String.format("文件上传失败,%s", response));
         throw new RuntimeException(String.format("文件上传失败,%s", response));
+    }
+
+    private static boolean isValidPort(String str) {
+        if (str == null || StringUtil.isBlank(str)) {
+            return false;
+        }
+
+        try {
+            int port = Integer.parseInt(str);
+            return port >= 1 && port <= 65535;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
