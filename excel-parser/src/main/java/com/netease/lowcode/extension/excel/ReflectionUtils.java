@@ -267,10 +267,10 @@ public class ReflectionUtils {
     }
 
     private static boolean isLcapDomainClass(Class tClass) {
-        // 低代码实体和structure在固定的package下
-        return tClass.getPackage().getName().indexOf("domain.entities") > 0 ||
-                tClass.getPackage().getName().indexOf("domain.structure") > 0 ||
-                tClass.getPackage().getName().indexOf("domain.enumeration") > 0;
+        // 低代码实体和structure在固定的package下，4.4版本包路径变更，没有domain
+        return tClass.getPackage().getName().indexOf("entities") > 0 ||
+                tClass.getPackage().getName().indexOf("structure") > 0 ||
+                tClass.getPackage().getName().indexOf("enumeration") > 0;
     }
 
     /**

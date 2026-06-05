@@ -4,7 +4,7 @@
 
     <groupId>com.netease.lowcode.extension</groupId>
     <artifactId>excel-parser</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.2</version>
     <name>extension module archetype</name>
     <packaging>jar</packaging>
 
@@ -114,6 +114,22 @@
                         <phase>package</phase> <!-- 指定在打包节点执行jar包合并操作 -->
                         <goals>
                             <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 此依赖库需要手动修改nasl-metadata.json并放到target/classes目录下-->
+            <plugin>
+                <groupId>com.netease.lowcode</groupId>
+                <artifactId>nasl-metadata-maven-plugin</artifactId>
+                <version>1.3.0</version>
+                <configuration>
+                    <jarWithDependencies>false</jarWithDependencies>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>archive</goal>
                         </goals>
                     </execution>
                 </executions>

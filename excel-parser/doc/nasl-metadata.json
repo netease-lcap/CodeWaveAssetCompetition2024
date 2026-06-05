@@ -6,14 +6,14 @@
     "ideVersion":"2.21",
     "type":"module",
     "subType":"extension",
-    "version":"1.3.0",
+    "version":"1.3.2",
     "editable":false,
     "externalDependencyMap":{
         "maven":[
             {
                 "groupId":"com.netease.lowcode.extension",
                 "artifactId":"excel-parser",
-                "version":"1.3.0"
+                "version":"1.3.2"
             }
         ]
     },
