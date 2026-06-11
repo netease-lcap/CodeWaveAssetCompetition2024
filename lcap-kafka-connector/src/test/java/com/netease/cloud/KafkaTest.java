@@ -45,6 +45,38 @@ public class KafkaTest {
 
 
     /**
+     * 异步发送消息
+     */
+    @Test
+    public void sendAsync() {
+        Boolean send = kafkaConnector1.sendAsync("topic1", "测试异步发送");
+        log.info("异步发送提交结果： " + send);
+        log.info("===========");
+        try {
+            //等待回调与接收消息
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 按key异步发送消息
+     */
+    @Test
+    public void sendAsyncByKey() {
+        Boolean send = kafkaConnector1.sendAsyncByKey("topic1", "key1", "测试按key异步发送");
+        log.info("异步发送提交结果： " + send);
+        log.info("===========");
+        try {
+            //等待回调与接收消息
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * 测试创建主题
      */
     @Test

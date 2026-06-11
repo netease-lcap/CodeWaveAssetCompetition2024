@@ -139,6 +139,49 @@ public class KafkaConnector {
     }
 
     /**
+     * 异步发送消息到kafka主题，不阻塞调用线程，发送结果通过日志记录
+     *
+     * @param topic 消息主题
+     * @param data  发送的数据
+     * @return true表示已提交至发送缓冲区
+     */
+    @NaslConnector.Logic
+    public Boolean sendAsync(String topic, String data) {
+        ProducerRecord<String, Object> kafkaMessage = new ProducerRecord<>(topic, data);
+        kafkaProducer.send(kafkaMessage, (metadata, exception) -> {
+            if (exception != null) {
+                log.error("异步发送消息失败, topic={}", topic, exception);
+            } else if (log.isDebugEnabled()) {
+                log.debug("异步发送消息成功, topic={}, partition={}, offset={}",
+                        metadata.topic(), metadata.partition(), metadata.offset());
+            }
+        });
+        return true;
+    }
+
+    /**
+     * 按key分组，异步发送消息到kafka主题，不阻塞调用线程，发送结果通过日志记录
+     *
+     * @param topic 消息主题
+     * @param key   发送的key
+     * @param data  发送的数据
+     * @return true表示已提交至发送缓冲区
+     */
+    @NaslConnector.Logic
+    public Boolean sendAsyncByKey(String topic, String key, String data) {
+        ProducerRecord<String, Object> kafkaMessage = new ProducerRecord<>(topic, key, data);
+        kafkaProducer.send(kafkaMessage, (metadata, exception) -> {
+            if (exception != null) {
+                log.error("异步发送消息失败, topic={}, key={}", topic, key, exception);
+            } else if (log.isDebugEnabled()) {
+                log.debug("异步发送消息成功, topic={}, key={}, partition={}, offset={}",
+                        metadata.topic(), key, metadata.partition(), metadata.offset());
+            }
+        });
+        return true;
+    }
+
+    /**
      * 新增主题
      *
      * @param topic       主题名称

@@ -6,7 +6,7 @@
 
     <groupId>com.netease.cloud</groupId>
     <artifactId>lcap-kafka-connector</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 
     <name>kakfa连接器</name>
     <description>可连接第三方Kafka服务并执行操作</description>
