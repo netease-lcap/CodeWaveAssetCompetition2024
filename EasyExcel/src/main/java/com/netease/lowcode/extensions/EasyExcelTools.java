@@ -19,6 +19,10 @@ import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy
 import com.alibaba.excel.write.style.column.SimpleColumnWidthStyleStrategy;
 import com.alibaba.excel.write.style.row.SimpleRowHeightStyleStrategy;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.netease.cloud.codewave.file.connector.AbstractFileConnector;
+import com.netease.cloud.codewave.file.connector.FileConnectionManager;
+import com.netease.cloud.codewave.file.connector.FileDownloadResult;
+import com.netease.cloud.codewave.file.connector.utils.CodeWaveFileUrl;
 import com.netease.lowcode.core.annotation.NaslLogic;
 import com.netease.lowcode.extensions.extensions.ShowImageConverter;
 import com.netease.lowcode.extensions.listeners.LibraryReadListener;
@@ -57,7 +61,7 @@ import java.util.stream.Collectors;
 
 @Component("libraryEasyExcelTools")
 public class EasyExcelTools {
-
+    private static final String UPLOAD_API_PATH_PREFIX = "/upload";
     private static final Logger log = LoggerFactory.getLogger(EasyExcelTools.class);
     private static ExecutorService executor = new ThreadPoolExecutor(8, 32, 5000, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<>(5000), new ThreadPoolExecutor.AbortPolicy());
@@ -135,6 +139,10 @@ public class EasyExcelTools {
 
     public static InputStream openUrlStream(String url) {
         try {
+            if (isFileConnectorUrl(url)) {
+                return fileDownloadV2(url);
+            }
+
             Request request = new Request.Builder().url(getFileUrl(url)).get().build();
             Response response = okHttpClient.newCall(request).execute();
 
@@ -146,7 +154,41 @@ public class EasyExcelTools {
         } catch (IOException e) {
             log.error("下载文件发生异常", e);
             throw new RuntimeException("下载文件发生异常", e);
+        } catch (Exception e) {
+            log.error("下载文件发生异常", e);
+            throw new RuntimeException("下载文件发生异常", e);
         }
+    }
+
+    private static boolean isFileConnectorUrl(String url) {
+        String normalizedUrl = StringUtils.trimToEmpty(url);
+        return StringUtils.startsWith(normalizedUrl, UPLOAD_API_PATH_PREFIX)
+                || StringUtils.startsWith(normalizedUrl, "upload");
+    }
+
+    private static InputStream fileDownloadV2(String fileUrl) {
+        String path = dealPath(fileUrl);
+        AbstractFileConnector defaultConnector = FileConnectionManager.getDefaultFileConnector();
+        CodeWaveFileUrl fileUrlCodeWaveFileUrl = CodeWaveFileUrl.fromUri(path);
+        FileDownloadResult result = defaultConnector.download(fileUrlCodeWaveFileUrl, new HashMap<>());
+        InputStream inputStream = result.getInputStream();
+        if (Objects.isNull(inputStream)) {
+            throw new RuntimeException("下载文件发生异常, 文件流为空: " + fileUrl);
+        }
+        return inputStream;
+    }
+
+    private static String dealPath(String path) {
+        path = StringUtils.trimToEmpty(path).replaceAll("/{2,}", "/");
+        if (StringUtils.startsWith(path, UPLOAD_API_PATH_PREFIX)) {
+            path = path.substring(UPLOAD_API_PATH_PREFIX.length());
+        } else if (StringUtils.startsWith(path, "upload")) {
+            path = path.substring("upload".length());
+        }
+        if (path.startsWith("/")) {
+            path = path.substring(1);
+        }
+        return path;
     }
 
     /**

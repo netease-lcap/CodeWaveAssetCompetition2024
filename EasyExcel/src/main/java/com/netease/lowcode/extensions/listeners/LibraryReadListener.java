@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netease.lowcode.extensions.FileUtils;
 import com.netease.lowcode.extensions.UploadResponseDTO;
-import com.netease.lowcode.extensions.annotation.Picture;
 import com.netease.lowcode.extensions.jackson.serializers.LocalDateSerializer;
 import com.netease.lowcode.extensions.jackson.serializers.LocalTimeSerializer;
 import com.netease.lowcode.extensions.jackson.serializers.ZonedDateTimeSerializer;
@@ -27,6 +26,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
@@ -44,6 +47,12 @@ import static com.netease.lowcode.extensions.EasyExcelTools.openUrlStream;
 
 public class LibraryReadListener<T> implements ReadListener<T> {
     private static final Logger log = LoggerFactory.getLogger(LibraryReadListener.class);
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Picture {
+        int columnIndex() default 0;
+    }
 
     /**
      * 每读取100条数据进行一次处理,防止oom
