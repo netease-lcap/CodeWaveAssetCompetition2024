@@ -1,12 +1,12 @@
 package com.netease.http.httpclient;
 
-import com.alibaba.fastjson.JSONObject;
 import com.netease.http.dto.DtoConvert;
 import com.netease.http.dto.LocalFileCacheDto;
 import com.netease.http.dto.RequestParam;
 import com.netease.http.dto.RequestParamAllBodyTypeInner;
 import com.netease.http.exception.TransferCommonException;
 import com.netease.http.util.FileNameValidator;
+import com.netease.http.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
@@ -105,7 +105,7 @@ public class HttpClientService {
         if (exchange.getStatusCode() == HttpStatus.OK) {
             return exchange.getBody();
         } else {
-            throw new TransferCommonException(exchange.getStatusCodeValue(), JSONObject.toJSONString(exchange));
+            throw new TransferCommonException(exchange.getStatusCodeValue(), JsonUtil.toJson(exchange));
         }
     }
 
@@ -254,7 +254,7 @@ public class HttpClientService {
             }
             return file;
         } else {
-            logger.error("请求http失败,返回：{}", JSONObject.toJSONString(response));
+            logger.error("请求http失败,返回：{}", JsonUtil.toJson(response));
         }
         return null;
     }

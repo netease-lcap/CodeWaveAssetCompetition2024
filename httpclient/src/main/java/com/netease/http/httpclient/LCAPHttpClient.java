@@ -1,9 +1,9 @@
 package com.netease.http.httpclient;
 
-import com.alibaba.fastjson.JSONObject;
 import com.netease.http.dto.*;
 import com.netease.http.exception.TransferCommonException;
 import com.netease.http.util.FileUtil;
+import com.netease.http.util.JsonUtil;
 import com.netease.http.util.SSLUtil;
 import com.netease.lowcode.core.annotation.NaslLogic;
 import com.netease.lowcode.core.annotation.Required;
@@ -75,7 +75,7 @@ public class LCAPHttpClient {
             if (exchange.getStatusCode() == HttpStatus.OK) {
                 return exchange.getBody();
             } else {
-                throw new TransferCommonException(exchange.getStatusCodeValue(), JSONObject.toJSONString(exchange));
+                throw new TransferCommonException(exchange.getStatusCodeValue(), JsonUtil.toJson(exchange));
             }
         } catch (HttpClientErrorException e) {
             logger.error("", e);
@@ -406,7 +406,7 @@ public class LCAPHttpClient {
             if (exchange.getStatusCode() == HttpStatus.OK) {
                 return exchange.getBody();
             } else {
-                throw new TransferCommonException(exchange.getStatusCodeValue(), JSONObject.toJSONString(exchange));
+                throw new TransferCommonException(exchange.getStatusCodeValue(), JsonUtil.toJson(exchange));
             }
         } catch (HttpClientErrorException e) {
             logger.error("", e);
@@ -440,7 +440,7 @@ public class LCAPHttpClient {
             if (exchange.getStatusCode() == HttpStatus.OK) {
                 return exchange.getBody();
             } else {
-                throw new TransferCommonException(exchange.getStatusCodeValue(), JSONObject.toJSONString(exchange));
+                throw new TransferCommonException(exchange.getStatusCodeValue(), JsonUtil.toJson(exchange));
             }
         } catch (HttpClientErrorException e) {
             logger.error("", e);
@@ -479,7 +479,7 @@ public class LCAPHttpClient {
             if (exchange.getStatusCode() == HttpStatus.OK) {
                 return exchange.getBody();
             } else {
-                throw new TransferCommonException(exchange.getStatusCode().value(), JSONObject.toJSONString(exchange));
+                throw new TransferCommonException(exchange.getStatusCode().value(), JsonUtil.toJson(exchange));
             }
         } catch (HttpClientErrorException e) {
             logger.error("", e);
@@ -540,7 +540,7 @@ public class LCAPHttpClient {
             exchangeResponseDto.setBodyString(exchange.getBody());
             return exchangeResponseDto;
         } else {
-            throw new TransferCommonException(exchange.getStatusCode().value(), JSONObject.toJSONString(exchange));
+            throw new TransferCommonException(exchange.getStatusCode().value(), JsonUtil.toJson(exchange));
         }
     }
 
@@ -568,7 +568,7 @@ public class LCAPHttpClient {
             if (exchange.getStatusCode() == HttpStatus.OK) {
                 return exchange.getBody();
             } else {
-                throw new TransferCommonException(exchange.getStatusCodeValue(), JSONObject.toJSONString(exchange));
+                throw new TransferCommonException(exchange.getStatusCodeValue(), JsonUtil.toJson(exchange));
             }
         } catch (HttpClientErrorException e) {
             logger.error("", e);
