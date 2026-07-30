@@ -22,11 +22,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -578,4 +584,117 @@ public class LCAPHttpClient {
             throw new TransferCommonException(e.getMessage(), e);
         }
     }
+
+
+    /**
+     * 文件下载（下载后上传到当前应用文件存储nos，返回上传后可直接访问的url）
+     *
+     * @param url      文件下载地址
+     * @param fileName 文件名，若url中未携带文件后缀，则使用该文件名的后缀
+     * @return
+     */
+    @NaslLogic
+    public String downloadFile(@Required String url, @Required String fileName) throws TransferCommonException {
+        File file = null;
+        try {
+            String finalFileName = fileName;
+            String urlFileExt = getFileExtFromUrl(url);
+            if (!StringUtils.isEmpty(urlFileExt)) {
+                //url携带文件后缀，优先使用url的后缀
+                String fileNameBase = fileName.contains(".") ? fileName.substring(0, fileName.lastIndexOf(".")) : fileName;
+                finalFileName = fileNameBase + urlFileExt;
+            }
+            RequestParamAllBodyTypeInner requestParam = new RequestParamAllBodyTypeInner();
+            requestParam.setUrl(url);
+            requestParam.setHttpMethod(HttpMethod.GET.name());
+            file = httpClientService.downloadFile(requestParam, restTemplate, finalFileName);
+            if (file == null) {
+                return null;
+            }
+            UploadResponseDTO uploadResponseDTO = httpClientFileUtils.uploadStream(Files.newInputStream(file.toPath()), file.getName());
+            return uploadResponseDTO.getResult();
+        } catch (HttpClientErrorException e) {
+            logger.error("", e);
+            throw new TransferCommonException(e.getStatusCode().value(), e.getResponseBodyAsString());
+        } catch (Exception e) {
+            logger.error("", e);
+            throw new TransferCommonException(e.getMessage(), e);
+        } finally {
+            if (file != null && file.exists()) {
+                file.delete();
+            }
+        }
+    }
+
+    /**
+     * 从url的path部分提取文件后缀（含"."），若无后缀返回空字符串
+     */
+    private String getFileExtFromUrl(String url) {
+        try {
+            String path = new URL(url).getPath();
+            String lastSegment = path.contains("/") ? path.substring(path.lastIndexOf("/") + 1) : path;
+            if (lastSegment.contains(".")) {
+                return lastSegment.substring(lastSegment.lastIndexOf("."));
+            }
+        } catch (MalformedURLException e) {
+            logger.error("url解析异常", e);
+        }
+        return "";
+    }
+
+    /**
+     * 文件下载（下载后不上传，直接将文件流写入响应体，前端需通过页面导航方式访问该接口才能触发浏览器下载）
+     *
+     * @param url      文件下载地址
+     * @param fileName 文件名，可空，优先使用该文件名（含其自身后缀）；为空时才从url中解析文件名
+     * @return
+     */
+    @NaslLogic
+    public String downloadFileToResponse(@Required String url, String fileName) throws TransferCommonException {
+        try {
+            String finalFileName = !StringUtils.isEmpty(fileName) ? fileName : getFileNameFromUrl(url);
+            RequestParamAllBodyTypeInner requestParam = new RequestParamAllBodyTypeInner();
+            requestParam.setUrl(url);
+            requestParam.setHttpMethod(HttpMethod.GET.name());
+            ResponseEntity<byte[]> exchange = httpClientService.exchangeInner(requestParam, restTemplate, byte[].class);
+            if (exchange.getStatusCode() != HttpStatus.OK || exchange.getBody() == null) {
+                throw new TransferCommonException(exchange.getStatusCodeValue(), "文件下载失败");
+            }
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            if (requestAttributes == null) {
+                throw new TransferCommonException(500, "无法获取当前请求上下文，无法写入响应流");
+            }
+            HttpServletResponse response = requestAttributes.getResponse();
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(finalFileName, StandardCharsets.UTF_8.name()));
+            try (OutputStream outputStream = response.getOutputStream()) {
+                outputStream.write(exchange.getBody());
+                outputStream.flush();
+            }
+            return finalFileName;
+        } catch (HttpClientErrorException e) {
+            logger.error("", e);
+            throw new TransferCommonException(e.getStatusCode().value(), e.getResponseBodyAsString());
+        } catch (Exception e) {
+            logger.error("", e);
+            throw new TransferCommonException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 从url的path部分提取文件名（最后一段路径），解析失败或为空时使用时间戳作为文件名
+     */
+    private String getFileNameFromUrl(String url) {
+        try {
+            String path = new URL(url).getPath();
+            String lastSegment = path.contains("/") ? path.substring(path.lastIndexOf("/") + 1) : path;
+            if (!StringUtils.isEmpty(lastSegment)) {
+                return lastSegment;
+            }
+        } catch (MalformedURLException e) {
+            logger.error("url解析异常", e);
+        }
+        return String.valueOf(System.currentTimeMillis());
+    }
+
 }

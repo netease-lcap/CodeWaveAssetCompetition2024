@@ -1,6 +1,7 @@
 package com.netease.http.web.controller;
 
 import com.netease.http.dto.UploadResponseDTO;
+import com.netease.http.httpclient.LCAPHttpClient;
 import com.netease.http.util.FileUtil;
 import com.netease.http.web.dto.ApiReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ExtHttpFileUploadController {
     @Autowired
     private FileUtil httpClientFileUtils;
 
+    @Autowired
+    private LCAPHttpClient lcapHttpClient;
+
     /**
      * 上传文件
      *
@@ -36,6 +40,15 @@ public class ExtHttpFileUploadController {
         } catch (Exception e) {
             return ApiReturn.of(null, -1, e.getMessage());
         }
+    }
+
+
+    /**
+     * 下载文件
+     */
+    @PostMapping("/download")
+    public void downloadFile(@RequestParam("fileUrl") String fileUrl, @RequestParam(required = false) String fileName) {
+        lcapHttpClient.downloadFileToResponse(fileUrl, fileName);
     }
 
 }
