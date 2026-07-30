@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.yourcompany.xml.base64.converter.XmlBase64ConverterBasicSpringEnvironmentConfiguration

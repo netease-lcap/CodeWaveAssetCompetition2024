@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.yourcompany.xml.generator.utils.XmlGeneratorUtilsBasicSpringEnvironmentConfiguration

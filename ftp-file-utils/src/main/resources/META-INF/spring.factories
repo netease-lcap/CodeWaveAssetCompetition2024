@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.yourcompany.ftp.file.utils.FtpFileUtilsBasicSpringEnvironmentConfiguration
