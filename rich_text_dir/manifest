@@ -1,0 +1,15 @@
+Plugin-Version: 1.0.0
+Library-Type: Frontend
+Metadata-File: nasl.extension.json
+Tag: Vue
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.cjs: dist-theme/index.cjs
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.cjs.map: dist-theme/index.cjs.map
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.css: dist-theme/index.css
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.js: dist-theme/index.js
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.js.map: dist-theme/index.js.map
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.mjs: dist-theme/index.mjs
+packages/extension/rich_text_dir@1.0.7/dist-theme/index.mjs.map: dist-theme/index.mjs.map
+packages/extension/rich_text_dir@1.0.7/manifest: manifest
+packages/extension/rich_text_dir@1.0.7/source.zip: source.zip
+packages/extension/rich_text_dir@1.0.7/nasl.extension.d.ts: nasl.extension.d.ts
+packages/extension/rich_text_dir@1.0.7/zip.tgz: zip.tgz
