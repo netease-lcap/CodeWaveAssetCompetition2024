@@ -1,0 +1,5 @@
+- name: copyText
+  description: 复制文本
+  type: both
+  belong: logic
+  labels: [Runtime]
