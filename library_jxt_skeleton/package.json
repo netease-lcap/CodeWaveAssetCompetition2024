@@ -2,7 +2,7 @@
   "name": "library_jxt_skeleton",
   "title": " 骨架屏",
   "description": "使用 antdv 的 skeleton",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "./index.js",
   "author": "",
   "repository": "",
@@ -20,7 +20,6 @@
     "build": "npm run build:theme",
     "usage": "lcap usage",
     "deploy": "lcap deploy dist-theme",
-    "prepublishOnly": "lcap publish",
     "release": "lcap publish",
     "release:version": "npm run change:version & npm run release",
     "change:version": "node ./scripts/change-version.js"

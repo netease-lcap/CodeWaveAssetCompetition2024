@@ -5,7 +5,7 @@
     "specVersion": "1.0.0",
     "type": "module",
     "subType": "extension",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "frontends": [
         {
             "concept": "FrontendLibrary",
@@ -150,6 +150,12 @@
                                     "paragraph": true
                                 }
                             ]
+                        }
+                    ],
+                    "slots": [
+                        {
+                            "name": "default",
+                            "description": "插入组件"
                         }
                     ]
                 }
@@ -300,16 +306,23 @@
                                 }
                             ]
                         }
+                    ],
+                    "slots": [
+                        {
+                            "name": "default",
+                            "description": "插入组件"
+                        }
                     ]
                 }
             ],
             "logics": []
         }
     ],
+    "annotations": [],
     "summary": {
         "name": "library_jxt_skeleton",
         "title": " 骨架屏",
-        "version": "0.1.12",
+        "version": "0.1.13",
         "description": "使用 antdv 的 skeleton",
         "frontends": [
             {
@@ -332,7 +345,8 @@
                 ],
                 "logics": []
             }
-        ]
+        ],
+        "annotations": []
     },
     "compilerInfoMap": {
         "js": {

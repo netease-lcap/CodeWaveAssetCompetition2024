@@ -92,6 +92,6 @@
         group: 段落配置
         dependency:
             - paragraph: true
-  lots:
+  slots:
       - name: default
         description: 插入组件
