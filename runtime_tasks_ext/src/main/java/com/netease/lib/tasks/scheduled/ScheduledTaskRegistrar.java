@@ -1,6 +1,6 @@
 package com.netease.lib.tasks.scheduled;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.netease.lib.tasks.scheduled.model.TaskModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-//import com.alibaba.fastjson.JSONObject;
+//import com.alibaba.fastjson2.JSONObject;
 //import com.netease.lowcode.lib.api.ElasticsearchApi;
 //import com.netease.lowcode.lib.api.config.CommonEsSearchConfig;
 //import com.netease.lowcode.lib.api.dto.QueryItemsDto;

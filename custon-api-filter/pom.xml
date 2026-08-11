@@ -11,7 +11,7 @@
     <groupId>com.netease</groupId>
     <artifactId>custon-api-filter</artifactId>
     <!--平台上传过的包，在代码修改后版本号必须升级。因为平台中的包无法彻底删除。-->
-    <version>1.4.0</version>
+    <version>1.4.1</version>
     <name>custon-api-filter</name>
 
     <properties>
@@ -41,9 +41,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.83</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.62</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

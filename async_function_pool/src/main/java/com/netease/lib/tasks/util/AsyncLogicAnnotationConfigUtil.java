@@ -1,11 +1,12 @@
 package com.netease.lib.tasks.util;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -25,10 +26,10 @@ public class AsyncLogicAnnotationConfigUtil {
             ClassPathResource resource = new ClassPathResource(ANNOTATION_METADATA_LOGIC + annoName + ".json");
             InputStream inputStream = resource.getInputStream();
             byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
-            JSONArray array = JSONObject.parseArray(new String(bdata, StandardCharsets.UTF_8));
+            JSONArray array = JSONArray.parseArray(new String(bdata, StandardCharsets.UTF_8));
             return array;
         } catch (Exception e) {
-            log.error("readAnnotationFile error", e);
+            log.warn("readAnnotationFile error", e);
             // 处理异常
             return null;
         }
@@ -51,8 +52,9 @@ public class AsyncLogicAnnotationConfigUtil {
             JSONObject annoObj = (JSONObject) anno;
             String logicName = annoObj.getString("logicName");
             JSONObject annotationProperties = annoObj.getJSONObject("annotationProperties");
-            if ("true".equals(annotationProperties.getString("useAnno"))) {
+            if ("true".equals(annotationProperties.getString("useAnno")) && !StringUtils.isEmpty(logicName)) {
                 result.add(logicName);
+                result.add(NamingUtils.toLowerCamelCase(logicName));
             }
         });
         useAnnoLogicNames.put(annoName, result);
