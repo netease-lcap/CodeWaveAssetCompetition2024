@@ -12,7 +12,7 @@
 
     <groupId>com.netease</groupId>
     <artifactId>common-es-search-tool</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -50,9 +50,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.83</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.62</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
