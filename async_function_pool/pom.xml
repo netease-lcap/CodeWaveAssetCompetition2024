@@ -12,7 +12,7 @@
 
     <groupId>com.netease</groupId>
     <artifactId>async_function_pool</artifactId>
-    <version>1.1.0</version>
+    <version>1.3.3</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -31,14 +31,15 @@
             <version>0.10.0</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.83</version>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.62</version>
         </dependency>
         <dependency>
             <artifactId>lcap-annotation</artifactId>
             <groupId>com.netease.lowcode</groupId>
             <version>1.0.4</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -75,7 +76,7 @@
                 <version>1.4.3</version>
                 <configuration>
                     <jarWithDependencies>false</jarWithDependencies>
-                    <rewriteVersion>true</rewriteVersion>
+<!--                    <rewriteVersion>true</rewriteVersion>-->
                 </configuration>
                 <executions>
                     <execution>

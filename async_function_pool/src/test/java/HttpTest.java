@@ -1,4 +1,4 @@
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.netease.lib.tasks.AsyncFunctionPoolSpringEnvironmentConfiguration;
 import com.netease.lib.tasks.api.FunctionManagerApi;
 import com.netease.lib.tasks.model.ThreadResultDTO;

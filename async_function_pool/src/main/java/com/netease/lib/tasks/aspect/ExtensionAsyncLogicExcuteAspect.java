@@ -16,8 +16,6 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-import static java.lang.Thread.sleep;
-
 @Aspect
 @Component
 public class ExtensionAsyncLogicExcuteAspect {
@@ -37,7 +35,6 @@ public class ExtensionAsyncLogicExcuteAspect {
         }
         CompletableFuture<Object> future = CompletableFuture.supplyAsync(() -> {
             try {
-                sleep(10*1000);
                 return joinPoint.proceed();
             } catch (Throwable e) {
                 log.error("ExtensionAsyncLogicExcuteAspect error", e);
