@@ -1,6 +1,6 @@
 package com.netease.lowcode.lib.api.util;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.netease.lowcode.lib.api.dto.QueryResultDto;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequest;
