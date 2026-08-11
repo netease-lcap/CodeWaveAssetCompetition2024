@@ -1,7 +1,7 @@
 package com.netease.lib.tasks.api;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.netease.lib.tasks.api.mode.Constant;
 import com.netease.lib.tasks.api.mode.TaskStructure;
 import com.netease.lib.tasks.api.util.CronUtil;

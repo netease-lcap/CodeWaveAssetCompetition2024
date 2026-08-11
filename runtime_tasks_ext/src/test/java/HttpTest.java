@@ -1,4 +1,4 @@
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.netease.lib.tasks.RuntimeTasksBasicSpringEnvironmentConfiguration;
 import com.netease.lib.tasks.api.TaskManagerApi;
 import com.netease.lib.tasks.api.mode.TaskStructure;
