@@ -6,14 +6,14 @@
     "ideVersion":"2.21",
     "type":"module",
     "subType":"extension",
-    "version":"1.3.2",
+    "version":"1.3.4",
     "editable":false,
     "externalDependencyMap":{
         "maven":[
             {
                 "groupId":"com.netease.lowcode.extension",
                 "artifactId":"excel-parser",
-                "version":"1.3.2"
+                "version":"1.3.4"
             }
         ]
     },
@@ -22,7 +22,7 @@
             "concept":"Structure",
             "name":"ExcelParseResult",
             "typeParams":null,
-            "compilerInfo":{
+            "compilerInfoMap":{
                 "java":{
                     "packageName":"com.netease.lowcode.extension.excel.dto",
                     "className":"ExcelParseResult"
@@ -141,7 +141,7 @@
             "concept":"Structure",
             "name":"ExcelParseError",
             "typeParams":null,
-            "compilerInfo":{
+            "compilerInfoMap":{
                 "java":{
                     "packageName":"com.netease.lowcode.extension.excel.dto",
                     "className":"ExcelParseError"
@@ -221,7 +221,7 @@
             "concept":"Structure",
             "name":"ExcelParseRect",
             "typeParams":null,
-            "compilerInfo":{
+            "compilerInfoMap":{
                 "java":{
                     "packageName":"com.netease.lowcode.extension.excel.dto",
                     "className":"ExcelParseRect"

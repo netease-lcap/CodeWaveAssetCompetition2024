@@ -4,7 +4,7 @@
 
     <groupId>com.netease.lowcode.extension</groupId>
     <artifactId>excel-parser</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.4</version>
     <name>extension module archetype</name>
     <packaging>jar</packaging>
 
@@ -80,6 +80,15 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>doc</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>nasl-metadata.json</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -88,6 +97,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
